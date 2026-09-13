@@ -1,3 +1,14 @@
-## Connect with Me
+🔐 CYBER WITH CJ
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Chirag%20Menariya-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/chirag-menariya/)
+Cybersecurity • Penetration Testing • Notes • Labs
+
+Networking
+Linux
+Web Security
+API Security
+Penetration Testing
+Active Directory
+Tools
+Cheat Sheets
+Lab Write-ups
+...
