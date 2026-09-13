@@ -5,3 +5,6 @@
 .topic-card { border: 1px solid var(--md-default-fg-color--lightest); border-radius: .65rem; padding: 1rem 1.1rem; transition: border-color .2s, transform .2s; }
 .topic-card:hover { border-color: var(--md-accent-fg-color); transform: translateY(-2px); }
 .topic-card h3 { margin-top: 0; }
+/* Keep the copyright line while hiding the theme's generator credit. */
+.md-copyright { font-size: 0; }
+.md-copyright__highlight { font-size: .64rem; }

@@ -5,6 +5,7 @@ repo_name: Cyber With CJ
 copyright: Copyright © 2026 Cyber With CJ
 theme:
   name: material
+  generator: false
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
