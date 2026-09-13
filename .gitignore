@@ -1,0 +1,11 @@
+# MkDocs generated output
+site/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Local virtual environments
+.venv/
+venv/
+env/

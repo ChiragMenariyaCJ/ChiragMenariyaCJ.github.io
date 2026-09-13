@@ -1,0 +1,7 @@
+﻿:root { --md-primary-fg-color: #101418; --md-accent-fg-color: #00cfe8; }
+[data-md-color-scheme="slate"] { --md-default-bg-color: #0d1117; --md-code-bg-color: #151b23; }
+.md-header { border-bottom: 1px solid rgba(0, 207, 232, .25); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.topic-card { border: 1px solid var(--md-default-fg-color--lightest); border-radius: .65rem; padding: 1rem 1.1rem; transition: border-color .2s, transform .2s; }
+.topic-card:hover { border-color: var(--md-accent-fg-color); transform: translateY(-2px); }
+.topic-card h3 { margin-top: 0; }
