@@ -1,14 +1,6 @@
 # About Me
 
-I am an MSc Cyber Security candidate with a strong software development background in Node.js, NestJS, microservices, MySQL, PostgreSQL, and Snowflake. I am transitioning into red-team, penetration-testing, and web-security roles.
-
-During more than two years as a Node.js developer, I developed and maintained 100+ backend APIs, improved system performance by an estimated 30–35%, and supported secure development across 10+ deployment cycles through input validation, authentication checks, access-control logic, and safer database handling.
-
-My background in backend systems, APIs, databases, and cloud-based architectures helps me understand how applications are built, where they fail, and how vulnerabilities can be identified, tested, and remediated.
-
-I have hands-on experience with the OWASP Top 10, Burp Suite, Nmap, sqlmap, Kali Linux, API security, vulnerability assessment, and remediation reporting. This experience includes 50+ authentication test cases, 10+ CTF labs, and testing across 5+ web applications and internal systems.
-
-I am currently building practical skills in ethical hacking, web and API penetration testing, cloud security testing, and adversarial techniques, with the goal of moving into red-team and offensive security roles after my MSc graduation in September 2026.
+MSc Cyber Security candidate (course completed; result pending) with 2+ years of professional Node.js backend development experience and practical cybersecurity experience gained through security internships, an MSc penetration-testing project and authorised lab work. Skilled in web and API security, vulnerability assessment, OWASP Top 10, Burp Suite, Nmap, sqlmap and Kali Linux, with experience recording evidence and preparing remediation-focused reports. Brings a strong understanding of authentication, authorisation, backend architecture and databases to security testing.
 
 ## Experience
 
