@@ -1,0 +1,20 @@
+{#-
+  Keep the social links visible in the footer while adding a clear, semantic label.
+-#}
+<div class="md-social" aria-label="Find me online">
+  <span class="md-social__label">Find me online</span>
+  {% for social in config.extra.social %}
+    {% set rel = "noopener" %}
+    {% if "mastodon" in social.icon %}
+      {% set rel = rel ~ " me" %}
+    {% endif %}
+    {% set title = social.name %}
+    {% if not title and "//" in social.link %}
+      {% set url = social.link.split("//", 1)[1] %}
+      {% set title = url.split("/", 1)[0] %}
+    {% endif %}
+    <a href="{{ social.link }}" target="_blank" rel="{{ rel }}" title="{{ title | e }}" class="md-social__link">
+      {% include ".icons/" ~ social.icon ~ ".svg" %}
+    </a>
+  {% endfor %}
+</div>

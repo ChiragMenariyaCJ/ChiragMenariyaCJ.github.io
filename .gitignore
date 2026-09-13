@@ -4,8 +4,18 @@ site/
 # Python cache files
 __pycache__/
 *.py[cod]
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
 
 # Local virtual environments
 .venv/
 venv/
 env/
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,6 +1,8 @@
-﻿# 🛠️ Tools
-Tools are useful when paired with scope, understanding, and careful interpretation.
-- Nmap
+# 🛠️ Tools
+
+Tools are useful when paired with a defined scope, sound understanding, and careful interpretation. Read each tool's documentation before using it.
+
+- [Nmap](nmap.md)
 - Burp Suite
 - Wireshark
 - Metasploit
@@ -8,4 +10,3 @@ Tools are useful when paired with scope, understanding, and careful interpretati
 - SQLMap
 - Netcat
 - Nikto
-See the [Nmap reference](nmap.md).

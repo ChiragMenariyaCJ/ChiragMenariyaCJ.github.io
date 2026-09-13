@@ -1,35 +1,64 @@
-﻿name: Deploy MkDocs
+name: Build and deploy documentation
+
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Build jobs only need to read the repository. Deployment permissions are
+# granted to the deploy job below, so pull requests cannot publish a site.
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
+# Keep production deployments in order; superseded pull-request builds may be
+# cancelled to save runner time.
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   build:
+    name: Build site
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
           cache: pip
-      - run: pip install -r requirements.txt
-      - run: mkdocs build --strict
-      - uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v5
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Build documentation
+        run: python -m mkdocs build --strict
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
+
   deploy:
+    name: Deploy site
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v5

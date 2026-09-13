@@ -1,1 +1,4 @@
-﻿mkdocs-material
+# Pin the documentation toolchain so local and CI builds render identically.
+# Update both versions together after reviewing the release notes.
+mkdocs==1.6.1
+mkdocs-material==9.7.7

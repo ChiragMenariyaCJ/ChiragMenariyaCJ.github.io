@@ -1,10 +1,364 @@
-﻿:root { --md-primary-fg-color: #101418; --md-accent-fg-color: #00cfe8; }
-[data-md-color-scheme="slate"] { --md-default-bg-color: #0d1117; --md-code-bg-color: #151b23; }
-.md-header { border-bottom: 1px solid rgba(0, 207, 232, .25); }
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-.topic-card { border: 1px solid var(--md-default-fg-color--lightest); border-radius: .65rem; padding: 1rem 1.1rem; transition: border-color .2s, transform .2s; }
-.topic-card:hover { border-color: var(--md-accent-fg-color); transform: translateY(-2px); }
-.topic-card h3 { margin-top: 0; }
-/* Keep the copyright line while hiding the theme's generator credit. */
-.md-copyright { font-size: 0; }
-.md-copyright__highlight { font-size: .64rem; }
+/* Site-wide theme refinements.
+ *
+ * Material for MkDocs provides the component styles.  This file only adds
+ * site-specific tokens and small layout improvements so upgrades remain easy.
+ */
+:root {
+  --md-primary-fg-color: #101418;
+  --md-primary-fg-color--light: #26313d;
+  --md-primary-fg-color--dark: #080b0f;
+  /* The stock cyan is too light for body text on a white background. */
+  --md-accent-fg-color: #006b7b;
+  --md-accent-fg-color--transparent: rgba(0, 107, 123, 0.14);
+  --md-typeset-a-color: var(--md-accent-fg-color);
+  --site-border-color: rgba(15, 23, 42, 0.14);
+  --site-card-bg: #f8fafc;
+  --site-focus-ring: 0 0 0 0.2rem rgba(0, 107, 123, 0.28);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0d1117;
+  --md-code-bg-color: #151b23;
+  --md-accent-fg-color: #63e6f2;
+  --md-accent-fg-color--transparent: rgba(99, 230, 242, 0.14);
+  --md-typeset-a-color: var(--md-accent-fg-color);
+  --site-border-color: rgba(148, 163, 184, 0.2);
+  --site-card-bg: #111923;
+  --site-focus-ring: 0 0 0 0.2rem rgba(99, 230, 242, 0.28);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.md-header {
+  border-bottom: 1px solid var(--md-accent-fg-color--transparent);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.08);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.md-main__inner {
+  margin-top: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* Headings and prose */
+.md-content .md-typeset {
+  line-height: 1.7;
+}
+
+.md-content .md-typeset > h1:first-child {
+  margin-top: 0.35rem;
+}
+
+.md-content .md-typeset h1 {
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.md-content .md-typeset h2 {
+  margin-top: 2.4rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--site-border-color);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* The homepage subtitle sits directly below its title, so it reads as an
+ * introduction rather than a section heading. */
+.md-content .md-typeset > h1 + h2 {
+  margin-top: 0.25rem;
+  padding-bottom: 0;
+  border-bottom: 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.md-content .md-typeset h3 {
+  margin-top: 1.7rem;
+  color: var(--md-default-fg-color);
+  line-height: 1.35;
+}
+
+.md-content .md-typeset li::marker {
+  color: var(--md-accent-fg-color);
+}
+
+.md-content .md-typeset a {
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.08em;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+
+.md-content .md-typeset a:hover {
+  color: var(--md-primary-fg-color--dark);
+}
+
+[data-md-color-scheme="slate"] .md-content .md-typeset a:hover {
+  color: #a7f3fa;
+}
+
+.md-content .md-typeset a:focus-visible,
+.toc-toggle:focus-visible {
+  outline: 0.14rem solid var(--md-accent-fg-color);
+  outline-offset: 0.16rem;
+  border-radius: 0.2rem;
+  box-shadow: var(--site-focus-ring);
+}
+
+.md-content .md-typeset blockquote {
+  margin: 1.5rem 0;
+  padding: 0.85rem 1rem;
+  border-inline-start: 0.2rem solid var(--md-accent-fg-color);
+  border-radius: 0 0.45rem 0.45rem 0;
+  background: var(--md-accent-fg-color--transparent);
+}
+
+/* Cards used on the home page. */
+.md-content .md-typeset .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  align-items: stretch;
+  gap: clamp(0.9rem, 2vw, 1.25rem);
+  margin: 2rem 0;
+}
+
+.md-content .md-typeset .topic-card {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1.15rem;
+  overflow: hidden;
+  border: 1px solid var(--site-border-color);
+  border-radius: 0.75rem;
+  background: var(--site-card-bg);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.md-content .md-typeset .topic-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.2rem;
+  content: "";
+  background: var(--md-accent-fg-color);
+  opacity: 0.8;
+}
+
+.md-content .md-typeset .topic-card:hover,
+.md-content .md-typeset .topic-card:focus-within {
+  transform: translateY(-0.2rem);
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 0.55rem 1.4rem rgba(15, 23, 42, 0.12);
+}
+
+[data-md-color-scheme="slate"] .md-content .md-typeset .topic-card {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+[data-md-color-scheme="slate"] .md-content .md-typeset .topic-card:hover,
+[data-md-color-scheme="slate"] .md-content .md-typeset .topic-card:focus-within {
+  box-shadow: 0 0.55rem 1.4rem rgba(0, 0, 0, 0.35);
+}
+
+.md-content .md-typeset .topic-card h3 {
+  margin: 0 0 0.55rem;
+  font-size: 1.1rem;
+}
+
+.md-content .md-typeset .topic-card p {
+  margin: 0;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-content .md-typeset .topic-card a {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Keep tables readable while retaining Material's horizontal scrolling. */
+.md-content .md-typeset table:not([class]) {
+  width: 100%;
+  max-width: 100%;
+  border-color: var(--site-border-color);
+  border-radius: 0.5rem;
+  font-size: 0.86rem;
+}
+
+.md-content .md-typeset table:not([class]) th {
+  background: rgba(0, 107, 123, 0.1);
+}
+
+[data-md-color-scheme="slate"] .md-content .md-typeset table:not([class]) th {
+  background: rgba(99, 230, 242, 0.12);
+}
+
+.md-content .md-typeset table:not([class]) td,
+.md-content .md-typeset table:not([class]) th {
+  vertical-align: top;
+}
+
+.md-content .md-typeset table:not([class]) tbody tr:hover {
+  background: rgba(0, 107, 123, 0.05);
+}
+
+[data-md-color-scheme="slate"] .md-content .md-typeset table:not([class]) tbody tr:hover {
+  background: rgba(99, 230, 242, 0.06);
+}
+
+/* Give code blocks and admonitions the same visual language as cards. */
+.md-content .md-typeset .highlight pre,
+.md-content .md-typeset pre {
+  border: 1px solid var(--site-border-color);
+  border-radius: 0.55rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.md-content .md-typeset code {
+  border-radius: 0.25rem;
+}
+
+.md-content .md-typeset .admonition,
+.md-content .md-typeset details {
+  border-radius: 0.55rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+/* Section links on the About page can collapse their nested headings. */
+.md-nav--secondary .md-nav__link {
+  margin-top: 0;
+  padding-block: 0.18rem;
+  line-height: 1.35;
+}
+
+.md-nav--secondary .toc-dropdown {
+  position: relative;
+}
+
+.md-nav--secondary .toc-dropdown > .md-nav__link {
+  padding-inline-end: 1.75rem;
+}
+
+.md-nav--secondary .toc-dropdown > nav {
+  margin-inline-start: 0.7rem;
+  padding-inline-start: 0.4rem;
+  border-inline-start: 1px solid var(--site-border-color);
+}
+
+.toc-toggle {
+  position: absolute;
+  /* Align the chevron's visual center with the first link's text line. */
+  inset-block-start: -0.05rem;
+  inset-inline-end: 0;
+  display: grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  margin: 0;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: color 150ms ease, background-color 150ms ease, transform 150ms ease;
+}
+
+.toc-toggle[aria-expanded="true"] {
+  transform: rotate(90deg);
+}
+
+.toc-toggle:hover {
+  color: var(--md-accent-fg-color);
+  background: var(--md-default-fg-color--lightest);
+}
+
+.md-nav--secondary .toc-collapsed {
+  display: none !important;
+}
+
+/* The generator link is hidden while the copyright text remains visible. */
+.md-copyright {
+  font-size: 0;
+}
+
+.md-copyright > a {
+  display: none;
+}
+
+.md-copyright__highlight {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.72rem;
+}
+
+/* Identify the social links in the footer without adding another page section. */
+.md-social {
+  align-items: center;
+}
+
+.md-social__label {
+  color: var(--md-footer-fg-color--light);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-inline-end: 0.4rem;
+}
+
+@media (max-width: 700px) {
+  .md-content .md-typeset h1 {
+    font-size: 1.85rem;
+  }
+
+  .md-content .md-typeset h2 {
+    margin-top: 2rem;
+  }
+
+  .md-content .md-typeset table:not([class]) {
+    font-size: 0.8rem;
+  }
+
+  .md-content .md-typeset table:not([class]) td,
+  .md-content .md-typeset table:not([class]) th {
+    padding: 0.65rem 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .md-content .md-typeset .topic-card,
+  .md-content .md-typeset .highlight pre,
+  .md-content .md-typeset pre,
+  .md-content .md-typeset .admonition,
+  .md-content .md-typeset details {
+    box-shadow: none;
+  }
+
+  .md-content .md-typeset table:not([class]) {
+    display: table;
+  }
+}

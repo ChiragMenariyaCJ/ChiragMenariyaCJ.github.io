@@ -1,11 +1,13 @@
-﻿# 🏢 Active Directory
-Active Directory provides identity, policy, and resource management for Windows domains.
+# 🏢 Active Directory
+
+Active Directory provides identity, policy, and resource management for Windows domains. These notes introduce the components and protocols used to administer and assess a domain safely.
+
 ## Topics
-- Domains
-- Domain Controllers
-- Users and Groups
-- Kerberos
-- NTLM
-- LDAP
+
+- Domains and domain controllers
+- Users, groups, and delegated access
+- Kerberos authentication
+- NTLM authentication
+- LDAP directory queries
 - Group Policy
-- Active Directory Enumeration
+- Authorised Active Directory enumeration

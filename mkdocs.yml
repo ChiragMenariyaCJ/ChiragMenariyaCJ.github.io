@@ -1,10 +1,12 @@
-﻿site_name: Cyber With CJ
+site_name: Cyber With CJ
 site_url: https://cyberwithcj.com
+site_description: Practical cybersecurity notes, references, and authorised lab write-ups.
 site_author: Chirag Menariya
-repo_name: Cyber With CJ
 copyright: Copyright © 2026 Cyber With CJ
 theme:
   name: material
+  custom_dir: overrides
+  language: en
   generator: false
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -19,9 +21,11 @@ theme:
       toggle: {icon: material/weather-night, name: Switch to light mode}
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.indexes
     - navigation.top
+    - navigation.footer
     - navigation.tracking
     - search.suggest
     - search.highlight
@@ -29,6 +33,15 @@ theme:
     - content.code.annotate
   font: {text: Inter, code: JetBrains Mono}
 extra_css: [stylesheets/extra.css]
+extra_javascript: [javascripts/toc-dropdown.js]
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ChiragMenariyaCJ
+      name: Chirag Menariya on GitHub
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/chirag-menariya/
+      name: Chirag Menariya on LinkedIn
 markdown_extensions:
   - admonition
   - tables
@@ -40,9 +53,10 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.details
   - toc:
-      permalink: true
+      permalink: false
 nav:
   - Home: index.md
+  - About: about.md
   - Networking: networking/index.md
   - Linux: linux/index.md
   - Penetration Testing: penetration-testing/index.md
