@@ -6,6 +6,18 @@ Welcome to my personal cybersecurity knowledge base. I write what I learn in pla
 
 > **Learn → Practise → Write it down → Come back later.**
 
+<div class="portfolio-home-callout" markdown>
+
+<span class="portfolio-home-callout__label">PROFILE / SELECTED WORK</span>
+
+### Meet the engineer behind the notes
+
+Cybersecurity practitioner, Node.js backend developer, and technical writer. See the projects, tools, and working loop behind **Cyber With CJ**.
+
+[Open the portfolio →](portfolio/index.md)
+
+</div>
+
 <div class="card-grid" markdown>
 
 <div class="topic-card" markdown>

@@ -1,6 +1,8 @@
 # About Me
 
-MSc Cyber Security candidate (course completed; result pending) with 2+ years of professional Node.js backend development experience and practical cybersecurity experience gained through security internships, an MSc penetration-testing project and authorised lab work. Skilled in web and API security, vulnerability assessment, OWASP Top 10, Burp Suite, Nmap, sqlmap and Kali Linux, with experience recording evidence and preparing remediation-focused reports. Brings a strong understanding of authentication, authorisation, backend architecture and databases to security testing.
+MSc Cyber Security graduate with Distinction and 2+ years of professional Node.js backend development experience, plus practical cybersecurity experience gained through security internships, an MSc penetration-testing project and authorised lab work. Skilled in web and API security, vulnerability assessment, OWASP Top 10, Burp Suite, Nmap, sqlmap and Kali Linux, with experience recording evidence and preparing remediation-focused reports. Brings a strong understanding of authentication, authorisation, backend architecture and databases to security testing.
+
+> Want the concise, project-first view? [Open the portfolio →](portfolio/index.md)
 
 ## Experience
 
@@ -100,8 +102,8 @@ MSc Cyber Security candidate (course completed; result pending) with 2+ years of
 
 ## Education
 
-- **MSc Cyber Security**, University of Hertfordshire — September 2025 to September 2026
-- **BTech Computer Software Engineering**, Sir Padampat Singhania University — June 2019 to May 2023
+- **MSc Cyber Security — Distinction**, University of Hertfordshire — September 2025 to September 2026
+- **BTech CSE (Computer Software Engineering) — First class**, Sir Padampat Singhania University — June 2019 to May 2023
 
 ## Current learning
 
@@ -194,6 +196,12 @@ Technical documentation · API design · troubleshooting · teamwork · communic
 Watch and clock repair · retail sales · inventory management · product demonstration · small-business operations · event logistics · career counselling
 
 ## Projects
+
+### [AI-Powered Penetration Testing Assist System](https://github.com/ChiragMenariyaCJ/AI-Powered-Penetration-Testing-Assist-System)
+
+*MSc Cyber Security project*
+
+Built PTAS with FastAPI, SQLAlchemy, MariaDB, Nmap, Ollama, and Qwen 2.5 3B Instruct to scan an authorised lab target, analyse findings, suggest safe validation steps, and generate JSON and HTML reports. AI recommendations are checked against scope and safety rules, remain `PENDING_APPROVAL`, and are never executed automatically.
 
 ### Secure User Authentication System
 
@@ -293,6 +301,10 @@ A web login system built with Flask, MySQL, and MongoDB. It demonstrates bcrypt 
 ### [Vulnerability Scanner and Reporting Tool](https://github.com/ChiragMenariyaCJ/Vulnerability-Scanner-And-Reporting-Tool)
 
 A Python project for authorised website and network checks, storing results and producing PDF or CSV reports.
+
+### [AI-Powered Penetration Testing Assist System](https://github.com/ChiragMenariyaCJ/AI-Powered-Penetration-Testing-Assist-System)
+
+My MSc Cyber Security project: a permission-first assistant that analyses authorised lab scans, suggests safe validation steps, and creates JSON and HTML reports using FastAPI, SQLAlchemy, MariaDB, Nmap, Ollama, and Qwen 2.5 3B Instruct. Recommendations remain pending approval and are never executed automatically.
 
 ### [Diabetes Prediction ML](https://github.com/ChiragMenariyaCJ/Diabetes-Prediction-ML)
 

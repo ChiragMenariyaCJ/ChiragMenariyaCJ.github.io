@@ -8,6 +8,7 @@ Read the published site at **[cyberwithcj.com](https://cyberwithcj.com)**.
 
 ## Contents
 
+- [Portfolio](docs/portfolio/index.md)
 - [About](docs/about.md)
 - [Networking](docs/networking/index.md)
 - [Linux](docs/linux/index.md)

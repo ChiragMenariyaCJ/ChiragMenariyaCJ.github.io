@@ -1,6 +1,6 @@
 site_name: Cyber With CJ
 site_url: https://cyberwithcj.com
-site_description: Practical cybersecurity notes, references, and authorised lab write-ups.
+site_description: Practical cybersecurity notes, developer portfolio, references, and authorised lab write-ups.
 site_author: Chirag Menariya
 copyright: Copyright © 2026 Cyber With CJ
 theme:
@@ -56,6 +56,7 @@ markdown_extensions:
       permalink: false
 nav:
   - Home: index.md
+  - Portfolio: portfolio/index.md
   - About: about.md
   - Networking: networking/index.md
   - Linux: linux/index.md
