@@ -14,6 +14,14 @@
   --site-border-color: rgba(15, 23, 42, 0.14);
   --site-card-bg: #f8fafc;
   --site-focus-ring: 0 0 0 0.2rem rgba(0, 107, 123, 0.28);
+  --site-heading: #111827;
+  --site-heading-muted: #344054;
+  --site-threat: #b42318;
+  --site-threat-bright: #d92d3f;
+  --site-threat-soft: rgba(180, 35, 24, 0.12);
+  --site-signal: #087f5b;
+  --site-signal-soft: rgba(8, 127, 91, 0.12);
+  --site-warning: #b54708;
 }
 
 [data-md-color-scheme="slate"] {
@@ -25,6 +33,14 @@
   --site-border-color: rgba(148, 163, 184, 0.2);
   --site-card-bg: #111923;
   --site-focus-ring: 0 0 0 0.2rem rgba(99, 230, 242, 0.28);
+  --site-heading: #f4f7fb;
+  --site-heading-muted: #cbd5e1;
+  --site-threat: #ff5666;
+  --site-threat-bright: #ff7a85;
+  --site-threat-soft: rgba(255, 86, 102, 0.14);
+  --site-signal: #72f0bb;
+  --site-signal-soft: rgba(114, 240, 187, 0.12);
+  --site-warning: #f4c66f;
 }
 
 html {
@@ -50,21 +66,60 @@ html {
 }
 
 .md-content .md-typeset > h1:first-child {
+  position: relative;
   margin-top: 0.35rem;
+  border-inline-start: 0.22rem solid var(--site-threat);
+  padding-inline-start: 0.8rem;
+  color: var(--site-heading);
+  text-shadow: 0 0 1rem var(--site-threat-soft);
+}
+
+.md-content .md-typeset > h1:first-child::after {
+  display: block;
+  width: 4.2rem;
+  height: 0.18rem;
+  margin-top: 0.7rem;
+  content: "";
+  background: linear-gradient(90deg, var(--site-threat), var(--md-accent-fg-color));
+  box-shadow: 0 0 0.8rem var(--site-threat-soft);
+}
+
+.md-content .md-typeset > h1#cyber-with-cj::before {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: var(--site-threat);
+  content: "RED TEAM  //  SECURITY NOTES";
+  font-family: var(--md-code-font-family);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
 }
 
 .md-content .md-typeset h1 {
   margin-bottom: 0.8rem;
   letter-spacing: -0.02em;
   font-size: clamp(1.9rem, 3.5vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--site-heading);
   line-height: 1.2;
 }
 
 .md-content .md-typeset h2 {
   margin-top: 2.4rem;
   padding-bottom: 0.45rem;
-  border-bottom: 1px solid var(--site-border-color);
+  border-bottom: 0;
+  background-image: linear-gradient(
+    90deg,
+    var(--site-threat) 0 3.75rem,
+    var(--site-border-color) 3.75rem 100%
+  );
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  color: var(--site-heading);
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.3;
 }
@@ -74,16 +129,33 @@ html {
 .md-content .md-typeset > h1 + h2 {
   margin-top: 0.25rem;
   padding-bottom: 0;
-  border-bottom: 0;
-  color: var(--md-default-fg-color--light);
-  font-size: 1.15rem;
-  font-weight: 500;
+  background-image: none;
+  color: var(--md-accent-fg-color);
+  font-family: var(--md-code-font-family);
+  font-size: clamp(0.82rem, 1.7vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.md-content .md-typeset > h1 + h2::before {
+  margin-inline-end: 0.45rem;
+  color: var(--site-threat);
+  content: "//";
+  font-weight: 800;
 }
 
 .md-content .md-typeset h3 {
   margin-top: 1.7rem;
-  color: var(--md-default-fg-color);
+  color: var(--site-heading);
+  font-weight: 700;
   line-height: 1.35;
+}
+
+.md-content .md-typeset h4,
+.md-content .md-typeset h5,
+.md-content .md-typeset h6 {
+  color: var(--site-heading);
 }
 
 .md-content .md-typeset li::marker {
@@ -115,9 +187,9 @@ html {
 .md-content .md-typeset blockquote {
   margin: 1.5rem 0;
   padding: 0.85rem 1rem;
-  border-inline-start: 0.2rem solid var(--md-accent-fg-color);
+  border-inline-start: 0.2rem solid var(--site-threat);
   border-radius: 0 0.45rem 0.45rem 0;
-  background: var(--md-accent-fg-color--transparent);
+  background: linear-gradient(90deg, var(--site-threat-soft), var(--md-accent-fg-color--transparent));
 }
 
 /* Cards used on the home page. */
@@ -152,6 +224,10 @@ html {
   opacity: 0.8;
 }
 
+.md-content .md-typeset .topic-card:nth-child(odd)::before {
+  background: var(--site-threat);
+}
+
 .md-content .md-typeset .topic-card:hover,
 .md-content .md-typeset .topic-card:focus-within {
   transform: translateY(-0.2rem);
@@ -170,12 +246,13 @@ html {
 
 .md-content .md-typeset .topic-card h3 {
   margin: 0 0 0.55rem;
+  color: var(--site-heading);
   font-size: 1.1rem;
 }
 
 .md-content .md-typeset .topic-card p {
   margin: 0;
-  color: var(--md-default-fg-color--light);
+  color: var(--site-heading-muted);
 }
 
 .md-content .md-typeset .topic-card a {
@@ -255,7 +332,7 @@ html {
 .md-content .md-typeset .portfolio-card-kicker,
 .md-content .md-typeset .portfolio-project-card__eyebrow {
   margin: 0 0 0.55rem;
-  color: var(--md-accent-fg-color);
+  color: var(--site-threat);
   font-family: var(--md-code-font-family);
   font-size: 0.72rem;
   font-weight: 700;
@@ -269,9 +346,15 @@ html {
   margin: 0;
   padding: 0;
   border: 0;
+  border-inline-start: 0.22rem solid var(--site-threat);
+  padding-inline-start: 0.85rem;
+  background-image: none;
+  color: var(--site-heading);
   font-size: clamp(2rem, 4.8vw, 3.35rem);
+  font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.05;
+  text-shadow: 0 0 1rem var(--site-threat-soft);
   overflow-wrap: normal;
   word-break: normal;
 }
@@ -346,14 +429,14 @@ html {
   margin: 1.7rem 0 2.2rem;
   padding: 1.05rem 1.2rem;
   border: 1px solid var(--portfolio-line);
-  border-inline-start: 0.25rem solid var(--md-accent-fg-color);
+  border-inline-start: 0.25rem solid var(--site-threat);
   border-radius: 0.65rem;
   background: var(--portfolio-panel-bg);
 }
 
 .md-content .md-typeset .portfolio-home-callout__label {
   display: block;
-  color: var(--md-accent-fg-color);
+  color: var(--site-threat);
   font-family: var(--md-code-font-family);
   font-size: 0.68rem;
   font-weight: 700;
@@ -571,6 +654,7 @@ html {
 .md-content .md-typeset .portfolio-project-card h3 {
   margin: 0.2rem 0 0.65rem;
   border: 0;
+  color: var(--site-heading);
   font-size: 1.18rem;
   line-height: 1.25;
 }
@@ -640,6 +724,7 @@ html {
 
 .md-content .md-typeset .portfolio-process__step h3 {
   margin: 0 0 0.4rem;
+  color: var(--site-heading);
   font-size: 1rem;
 }
 
@@ -870,6 +955,621 @@ html {
 
 .md-nav--secondary .toc-collapsed {
   display: none !important;
+}
+
+/* Sidebar command panels -------------------------------------------------
+ *
+ * The main content already carries the site's visual identity.  These
+ * panels give the two desktop rails a similarly intentional role: the left
+ * rail is the system map, while the right rail is the live page context.
+ * The treatment is deliberately scoped to desktop so Material's mobile
+ * drawer remains familiar and easy to use.
+ */
+:root {
+  --site-sidebar-bg: rgba(248, 250, 252, 0.92);
+  --site-sidebar-bg-strong: #edf7f8;
+  --site-sidebar-border: rgba(0, 107, 123, 0.2);
+  --site-sidebar-line: rgba(0, 107, 123, 0.14);
+  --site-sidebar-muted: #526173;
+  --site-sidebar-shadow: 0 0.8rem 1.8rem rgba(15, 23, 42, 0.1);
+}
+
+[data-md-color-scheme="slate"] {
+  --site-sidebar-bg: rgba(10, 20, 27, 0.94);
+  --site-sidebar-bg-strong: #132731;
+  --site-sidebar-border: rgba(99, 230, 242, 0.24);
+  --site-sidebar-line: rgba(99, 230, 242, 0.16);
+  --site-sidebar-muted: #a7b7c3;
+  --site-sidebar-shadow: 0 0.9rem 2.2rem rgba(0, 0, 0, 0.28);
+}
+
+@media screen and (min-width: 60em) {
+  /* The secondary rail appears before the primary drawer becomes a desktop
+   * rail, so give it the same panel language at tablet widths too. */
+  .md-sidebar--secondary .md-sidebar__scrollwrap {
+    position: relative;
+    height: auto !important;
+    max-height: calc(100vh - 6.1rem);
+    margin: 0 0.2rem;
+    padding: 0.45rem;
+    overflow-x: hidden;
+    border: 1px solid var(--site-sidebar-border);
+    border-inline-end: 2px solid var(--md-accent-fg-color);
+    border-radius: 0.85rem;
+    background-color: var(--site-sidebar-bg);
+    background-image:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.38), transparent 46%),
+      repeating-linear-gradient(0deg, transparent 0 1.55rem, rgba(0, 107, 123, 0.035) 1.55rem 1.6rem),
+      repeating-linear-gradient(90deg, transparent 0 1.55rem, rgba(0, 107, 123, 0.035) 1.55rem 1.6rem);
+    box-shadow: var(--site-sidebar-shadow);
+  }
+
+  [data-md-color-scheme="slate"] .md-sidebar--secondary .md-sidebar__scrollwrap {
+    background-image:
+      linear-gradient(145deg, rgba(99, 230, 242, 0.08), transparent 46%),
+      repeating-linear-gradient(0deg, transparent 0 1.55rem, rgba(99, 230, 242, 0.035) 1.55rem 1.6rem),
+      repeating-linear-gradient(90deg, transparent 0 1.55rem, rgba(99, 230, 242, 0.035) 1.55rem 1.6rem);
+  }
+
+  .md-sidebar--secondary .md-sidebar__inner {
+    padding: 0 !important;
+  }
+
+  .md-sidebar--secondary .md-sidebar__scrollwrap::before {
+    display: block;
+    padding: 0.2rem 0.5rem 0.62rem;
+    border-bottom: 1px solid var(--site-sidebar-line);
+    color: var(--md-accent-fg-color);
+    content: "CONTEXT  //  ON THIS PAGE";
+    font-family: var(--md-code-font-family);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    line-height: 1.4;
+  }
+
+  .md-sidebar--secondary .md-sidebar__scrollwrap::after {
+    display: block;
+    margin: 0.55rem 0.35rem 0.15rem;
+    padding: 0.42rem 0.5rem 0.1rem;
+    border-top: 1px solid var(--site-sidebar-line);
+    color: var(--site-sidebar-muted);
+    content: "SCROLL  /  FOLLOW THE SIGNAL";
+    font-family: var(--md-code-font-family);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary {
+    margin: 0;
+    font-size: 0.68rem;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__title {
+    margin: 0;
+    padding: 0.55rem 0.5rem 0.65rem;
+    border-bottom: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--md-default-fg-color);
+    font-family: var(--md-code-font-family);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__title .md-nav__icon {
+    display: none;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list {
+    position: relative;
+    margin: 0;
+    padding: 0.5rem 0.15rem 0.45rem 0.82rem !important;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list::before {
+    position: absolute;
+    inset-block: 0.7rem 0.65rem;
+    inset-inline-start: 0.28rem;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--site-sidebar-line) 9%, var(--site-sidebar-line) 91%, transparent);
+    content: "";
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item {
+    position: relative;
+    margin: 0;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav__link {
+    position: relative;
+    margin: 0;
+    padding: 0.36rem 0.42rem 0.36rem 0.6rem;
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
+    color: var(--site-sidebar-muted);
+    line-height: 1.35;
+    transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav__link::before {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: -0.69rem;
+    width: 0.34rem;
+    height: 0.34rem;
+    border: 1px solid var(--md-accent-fg-color);
+    border-radius: 50%;
+    background: var(--site-sidebar-bg);
+    content: "";
+    transform: translateY(-50%);
+    transition: background-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav__link:hover,
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav__link:focus-visible {
+    border-color: var(--site-sidebar-border);
+    background: var(--md-accent-fg-color--transparent);
+    color: var(--md-accent-fg-color);
+    transform: translateX(0.12rem);
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav__link--active {
+    border-color: var(--site-sidebar-border);
+    background: var(--md-accent-fg-color--transparent);
+    color: var(--md-accent-fg-color);
+    font-weight: 700;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav__link--active::before {
+    background: var(--md-accent-fg-color);
+    box-shadow: 0 0 0 0.18rem var(--md-accent-fg-color--transparent), 0 0 0.6rem var(--md-accent-fg-color);
+    transform: translateY(-50%) scale(0.9);
+  }
+
+  .md-sidebar--secondary .md-nav--secondary .md-nav {
+    margin: 0.15rem 0 0.25rem 0.45rem;
+    padding-inline-start: 0.45rem;
+    border-inline-start: 1px solid var(--site-sidebar-line);
+  }
+
+  .md-sidebar--secondary .md-nav--secondary .md-nav .md-nav__link {
+    margin: 0;
+    padding: 0.24rem 0.35rem;
+    color: var(--site-sidebar-muted);
+    font-size: 0.63rem;
+    line-height: 1.35;
+  }
+
+  .md-sidebar--secondary .md-nav--secondary .md-nav .md-nav__link:hover,
+  .md-sidebar--secondary .md-nav--secondary .md-nav .md-nav__link:focus-visible,
+  .md-sidebar--secondary .md-nav--secondary .md-nav .md-nav__link--active {
+    border-radius: 0.3rem;
+    background: var(--md-accent-fg-color--transparent);
+    color: var(--md-accent-fg-color);
+  }
+
+  .md-sidebar--secondary .toc-toggle {
+    inset-block-start: 0.27rem;
+    inset-inline-end: 0.2rem;
+    z-index: 1;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid var(--site-sidebar-line);
+    border-radius: 0.3rem;
+    background: var(--site-sidebar-bg-strong);
+    color: var(--md-accent-fg-color);
+    font-size: 0;
+    transform: none;
+  }
+
+  .md-sidebar--secondary .toc-toggle::before {
+    display: block;
+    width: 0.36rem;
+    height: 0.36rem;
+    border-inline-end: 1px solid currentcolor;
+    border-block-end: 1px solid currentcolor;
+    content: "";
+    transform: rotate(-45deg) translate(-0.05rem, -0.05rem);
+    transition: transform 150ms ease;
+  }
+
+  .md-sidebar--secondary .toc-toggle[aria-expanded="true"] {
+    background: var(--md-accent-fg-color--transparent);
+  }
+
+  .md-sidebar--secondary .toc-toggle[aria-expanded="true"]::before {
+    transform: rotate(45deg) translate(-0.05rem, -0.05rem);
+  }
+
+  .md-sidebar--secondary.md-sidebar--empty {
+    display: none !important;
+  }
+
+  /* When the right rail is available, keep the drawer from rendering a
+   * second copy of the same page outline on tablet-sized screens. */
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--active > .md-nav--secondary {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary .md-sidebar__scrollwrap {
+    position: relative;
+    height: auto !important;
+    max-height: calc(100vh - 6.1rem);
+    margin: 0 0.2rem;
+    padding: 0.45rem;
+    overflow-x: hidden;
+    border: 1px solid var(--site-sidebar-border);
+    border-inline-start: 2px solid var(--md-accent-fg-color);
+    border-radius: 0.85rem;
+    background-color: var(--site-sidebar-bg);
+    background-image:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.38), transparent 46%),
+      repeating-linear-gradient(0deg, transparent 0 1.55rem, rgba(0, 107, 123, 0.035) 1.55rem 1.6rem),
+      repeating-linear-gradient(90deg, transparent 0 1.55rem, rgba(0, 107, 123, 0.035) 1.55rem 1.6rem);
+    box-shadow: var(--site-sidebar-shadow);
+  }
+
+  [data-md-color-scheme="slate"] .md-sidebar--primary .md-sidebar__scrollwrap {
+    background-image:
+      linear-gradient(145deg, rgba(99, 230, 242, 0.08), transparent 46%),
+      repeating-linear-gradient(0deg, transparent 0 1.55rem, rgba(99, 230, 242, 0.035) 1.55rem 1.6rem),
+      repeating-linear-gradient(90deg, transparent 0 1.55rem, rgba(99, 230, 242, 0.035) 1.55rem 1.6rem);
+  }
+
+  .md-sidebar--primary .md-sidebar__inner {
+    padding: 0 !important;
+  }
+
+  .md-sidebar--primary .md-sidebar__scrollwrap::before {
+    display: block;
+    padding: 0.2rem 0.5rem 0.62rem;
+    border-bottom: 1px solid var(--site-sidebar-line);
+    color: var(--md-accent-fg-color);
+    content: "SYSTEM MAP  //  MODULES";
+    font-family: var(--md-code-font-family);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    line-height: 1.4;
+  }
+
+  .md-sidebar--primary .md-sidebar__scrollwrap::after {
+    display: block;
+    margin: 0.55rem 0.35rem 0.15rem;
+    padding: 0.42rem 0.5rem 0.1rem;
+    border-top: 1px solid var(--site-sidebar-line);
+    color: var(--site-sidebar-muted);
+    content: "STATUS  /  KNOWLEDGE BASE ONLINE";
+    font-family: var(--md-code-font-family);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+  }
+
+  /* navigation.tabs makes Material hide every non-active item in a
+   * `md-nav--lifted` rail.  The header tabs already cover that interaction;
+   * the desktop rail can therefore act as the complete module map instead. */
+  .md-sidebar--primary .md-nav--primary.md-nav--lifted > .md-nav__title {
+    display: flex;
+  }
+
+  .md-sidebar--primary .md-nav--primary.md-nav--lifted > .md-nav__list > .md-nav__item {
+    display: block;
+  }
+
+  .md-sidebar--primary .md-nav--primary.md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link {
+    position: relative;
+    margin-top: 0;
+    box-shadow: none;
+    pointer-events: auto;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__title {
+    display: flex;
+    align-items: center;
+    gap: 0.38rem;
+    min-height: 2.35rem;
+    margin: 0;
+    padding: 0.5rem 0.5rem 0.62rem;
+    border-bottom: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--md-default-fg-color);
+    font-family: var(--md-code-font-family);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__title .md-logo {
+    display: grid;
+    width: 1.55rem;
+    height: 1.55rem;
+    margin: 0;
+    padding: 0.2rem;
+    place-items: center;
+    border: 1px solid var(--site-sidebar-border);
+    border-radius: 0.35rem;
+    background: var(--site-sidebar-bg-strong);
+    color: var(--md-accent-fg-color);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__title .md-logo svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list {
+    padding: 0.5rem 0 0.25rem !important;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item {
+    margin: 0.15rem 0;
+    border-top: 0;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
+    position: relative;
+    align-items: center;
+    min-height: 2.05rem;
+    margin: 0;
+    padding: 0.42rem 0.55rem;
+    border: 1px solid transparent;
+    border-radius: 0.45rem;
+    color: var(--site-sidebar-muted);
+    font-size: 0.73rem;
+    line-height: 1.35;
+    transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link::before {
+    width: 0.28rem;
+    height: 0.28rem;
+    margin-inline-end: 0.42rem;
+    border: 1px solid var(--site-sidebar-line);
+    border-radius: 50%;
+    background: transparent;
+    content: "";
+    flex: 0 0 auto;
+    transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  /* Nested navigation entries (currently Tools) use a link container so the
+   * page link and expand control can sit side by side.  Give that shell the
+   * same rhythm as the regular module links. */
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 2.05rem;
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 0.45rem;
+    transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container > a.md-nav__link {
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0.42rem 0.35rem 0.42rem 0.55rem;
+    color: var(--site-sidebar-muted);
+    font-size: 0.73rem;
+    line-height: 1.35;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container > a.md-nav__link::before {
+    width: 0.28rem;
+    height: 0.28rem;
+    margin-inline-end: 0.42rem;
+    border: 1px solid var(--site-sidebar-line);
+    border-radius: 50%;
+    background: transparent;
+    content: "";
+    flex: 0 0 auto;
+    transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container > label.md-nav__link {
+    display: grid;
+    width: 1.8rem;
+    min-width: 1.8rem;
+    min-height: 1.8rem;
+    margin: 0 0.18rem 0 0;
+    padding: 0.2rem;
+    place-items: center;
+    color: var(--site-sidebar-muted);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container:hover,
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container:focus-within {
+    border-color: var(--site-sidebar-border);
+    background: var(--md-accent-fg-color--transparent);
+    transform: translateX(0.12rem);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container:hover > a.md-nav__link,
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container:focus-within > a.md-nav__link {
+    color: var(--md-accent-fg-color);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container:hover > a.md-nav__link::before,
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container:focus-within > a.md-nav__link::before {
+    border-color: var(--md-accent-fg-color);
+    background: var(--md-accent-fg-color);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__container {
+    border-color: var(--site-sidebar-border);
+    background: var(--md-accent-fg-color--transparent);
+    box-shadow: inset 2px 0 0 var(--md-accent-fg-color);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__container > a.md-nav__link {
+    color: var(--md-accent-fg-color);
+    font-weight: 700;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__container > a.md-nav__link::before {
+    border-color: var(--md-accent-fg-color);
+    background: var(--md-accent-fg-color);
+    box-shadow: 0 0 0 0.15rem var(--md-accent-fg-color--transparent), 0 0 0.55rem var(--md-accent-fg-color);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav {
+    margin: 0.15rem 0 0.35rem 0.45rem;
+    padding-inline-start: 0.45rem;
+    border-inline-start: 1px solid var(--site-sidebar-line);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav > .md-nav__title {
+    padding: 0.3rem 0.4rem 0.35rem;
+    background: transparent;
+    box-shadow: none;
+    color: var(--md-accent-fg-color);
+    font-family: var(--md-code-font-family);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav .md-nav__link {
+    margin: 0;
+    padding: 0.28rem 0.4rem;
+    color: var(--site-sidebar-muted);
+    font-size: 0.66rem;
+    line-height: 1.35;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav .md-nav__item--active > .md-nav__link {
+    color: var(--md-accent-fg-color);
+    font-weight: 700;
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link:hover,
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link:focus-visible {
+    border-color: var(--site-sidebar-border);
+    background: var(--md-accent-fg-color--transparent);
+    color: var(--md-accent-fg-color);
+    transform: translateX(0.12rem);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--active > .md-nav__link {
+    border-color: var(--site-sidebar-border);
+    background: var(--md-accent-fg-color--transparent);
+    color: var(--md-accent-fg-color);
+    font-weight: 700;
+    box-shadow: inset 2px 0 0 var(--md-accent-fg-color);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--active > .md-nav__link::before {
+    border-color: var(--md-accent-fg-color);
+    background: var(--md-accent-fg-color);
+    box-shadow: 0 0 0 0.15rem var(--md-accent-fg-color--transparent), 0 0 0.55rem var(--md-accent-fg-color);
+  }
+
+  /* Material renders the current page's TOC in the active left-nav item as
+   * well as in the dedicated right rail.  Keep the desktop rail clean and
+   * let the right panel be the single source of page context. */
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--active > .md-nav--secondary {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 76.25em) {
+  /* The top tabs are the desktop module navigation.  Hide Material's
+   * duplicate left rail here, but keep its drawer below this breakpoint for
+   * tablet and mobile navigation. */
+  .md-sidebar--primary {
+    display: none !important;
+  }
+
+  [dir="ltr"] .md-sidebar--primary ~ .md-content > .md-content__inner {
+    margin-left: 0 !important;
+  }
+
+  [dir="rtl"] .md-sidebar--primary ~ .md-content > .md-content__inner {
+    margin-right: 0 !important;
+  }
+}
+
+/* Red-team signal layer --------------------------------------------------
+ * Keep the technical cyan UI language, but use crimson only where the eye
+ * should read threat, focus, or an active assessment path.
+ */
+.md-tabs__item--active > .md-tabs__link {
+  color: var(--site-threat) !important;
+  text-shadow: 0 0 0.7rem var(--site-threat-soft);
+}
+
+.md-tabs__link:hover,
+.md-tabs__link:focus-visible {
+  color: var(--site-threat-bright) !important;
+}
+
+.md-sidebar--primary .md-sidebar__scrollwrap {
+  border-inline-start-color: var(--site-threat);
+}
+
+@media screen and (min-width: 60em) {
+  .md-sidebar--primary .md-nav--primary .md-nav__link {
+    color: var(--site-heading-muted);
+  }
+
+  .md-sidebar--primary .md-sidebar__scrollwrap::before {
+    color: var(--site-threat);
+  }
+
+  .md-sidebar--primary .md-sidebar__scrollwrap::after {
+    color: var(--site-signal);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__title .md-logo {
+    border-color: var(--site-threat-soft);
+    color: var(--site-threat);
+  }
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--active > .md-nav__link {
+    border-color: var(--site-threat-soft);
+    background: var(--site-threat-soft);
+    color: var(--site-threat);
+    box-shadow: inset 2px 0 0 var(--site-threat);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--active > .md-nav__link::before {
+    border-color: var(--site-threat);
+    background: var(--site-threat);
+    box-shadow: 0 0 0 0.15rem var(--site-threat-soft), 0 0 0.55rem var(--site-threat);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__container {
+    border-color: var(--site-threat-soft);
+    background: var(--site-threat-soft);
+    box-shadow: inset 2px 0 0 var(--site-threat);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__container > a.md-nav__link,
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__container > label.md-nav__link {
+    color: var(--site-threat);
+  }
+
+  .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested.md-nav__item--active > .md-nav__container > a.md-nav__link::before {
+    border-color: var(--site-threat);
+    background: var(--site-threat);
+    box-shadow: 0 0 0 0.15rem var(--site-threat-soft), 0 0 0.55rem var(--site-threat);
+  }
 }
 
 /* The generator link is hidden while the copyright text remains visible. */

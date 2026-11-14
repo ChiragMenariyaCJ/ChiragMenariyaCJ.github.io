@@ -10,6 +10,20 @@
       .replace(/^-+|-+$/g, '') || 'section';
   }
 
+  // A few short pages have no headings beyond their title.  Material still
+  // renders the secondary rail in that case, which leaves an empty panel and
+  // an unnecessary content gap.  Keep the rail only when it has real entries.
+  function syncSidebarState() {
+    if (typeof document === 'undefined') return;
+
+    document.querySelectorAll('.md-sidebar--secondary').forEach((sidebar) => {
+      const toc = sidebar.querySelector('[data-md-component="toc"]');
+      const hasEntries = Boolean(toc && toc.querySelector('.md-nav__item'));
+      sidebar.classList.toggle('md-sidebar--empty', !hasEntries);
+      sidebar.hidden = !hasEntries;
+    });
+  }
+
   function setupTocDropdowns() {
     if (typeof document === 'undefined') return;
 
@@ -47,9 +61,14 @@
     });
   }
 
-  if (typeof document$ !== 'undefined') {
-    document$.subscribe(setupTocDropdowns);
-  } else {
+  function refreshToc() {
+    syncSidebarState();
     setupTocDropdowns();
+  }
+
+  if (typeof document$ !== 'undefined') {
+    document$.subscribe(refreshToc);
+  } else {
+    refreshToc();
   }
 })();
