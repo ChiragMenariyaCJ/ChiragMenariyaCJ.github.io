@@ -76,6 +76,17 @@ Notes from authorised learning environments. [Explore →](labs/index.md)
 </div>
 </div>
 
+## People who opened this site
+
+<div class="site-visitor-counter" data-visitor-counter role="status" aria-live="polite">
+<div class="site-visitor-counter__copy">
+<span class="site-visitor-counter__eyebrow">LIVE SITE SIGNAL</span>
+<strong class="site-visitor-counter__value" data-visitor-count>—</strong>
+<span class="site-visitor-counter__label">approximate visits</span>
+</div>
+<p class="site-visitor-counter__status" data-visitor-status>The live counter loads when JavaScript is enabled.</p>
+</div>
+
 ## About these notes
 
 This is a work in progress. Each page starts as a concise reference and becomes more useful as I practise, verify, and document it. Content is educational and should be adapted to the rules of the environment being tested.

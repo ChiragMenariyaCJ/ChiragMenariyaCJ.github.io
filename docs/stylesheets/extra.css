@@ -244,6 +244,73 @@ html {
   box-shadow: 0 0.55rem 1.4rem rgba(0, 0, 0, 0.35);
 }
 
+.md-content .md-typeset .site-visitor-counter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin: 1.35rem 0 2.35rem;
+  padding: 1.05rem 1.2rem;
+  border: 1px solid var(--site-border-color);
+  border-inline-start: 0.25rem solid var(--site-signal);
+  border-radius: 0.75rem;
+  background: var(--site-card-bg);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.md-content .md-typeset .site-visitor-counter__copy {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: baseline;
+  column-gap: 0.65rem;
+}
+
+.md-content .md-typeset .site-visitor-counter__eyebrow {
+  grid-column: 1 / -1;
+  color: var(--site-signal);
+  font-family: var(--md-code-font-family);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.md-content .md-typeset .site-visitor-counter__value {
+  color: var(--md-accent-fg-color);
+  font-family: var(--md-code-font-family);
+  font-size: clamp(1.65rem, 4vw, 2.35rem);
+  line-height: 1.1;
+}
+
+.md-content .md-typeset .site-visitor-counter__label {
+  color: var(--site-heading-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.md-content .md-typeset .site-visitor-counter__status {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--site-heading-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  text-align: end;
+}
+
+.md-content .md-typeset .site-visitor-counter__status[data-state="error"] {
+  color: var(--site-warning);
+}
+
+.md-content .md-typeset .site-visitor-counter__status[data-state="preview"] {
+  color: var(--md-accent-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-content .md-typeset .site-visitor-counter {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
 .md-content .md-typeset .topic-card h3 {
   margin: 0 0 0.55rem;
   color: var(--site-heading);
@@ -1604,6 +1671,11 @@ html {
     font-size: 1.85rem;
   }
 
+  .md-content .md-typeset .site-visitor-counter__status {
+    width: 100%;
+    text-align: start;
+  }
+
   .md-content .md-typeset h2 {
     margin-top: 2rem;
   }
@@ -1635,6 +1707,7 @@ html {
 
 @media print {
   .md-content .md-typeset .topic-card,
+  .md-content .md-typeset .site-visitor-counter,
   .md-content .md-typeset .portfolio-home-callout,
   .md-content .md-typeset .portfolio-hero,
   .md-content .md-typeset .portfolio-stat,

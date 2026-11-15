@@ -223,13 +223,13 @@ Built a machine-learning model with Intel tooling to estimate diabetes risk from
 
 ### Capture the Flag Research
 
-*May 2022 – Jul 2022 · Associated with Sir Padampat Singhania University*
+*May 2022 – Jul 2022 · Associated with Cyber World Organization*
 
 Researched capture-the-flag exercises during a summer internship with Cyber World Organization. The work covered digital forensics, network-traffic analysis, puzzle solving, and collaborative problem solving in controlled environments.
 
 ### Kharif Crop Disease Identification with Deep Learning
 
-*May 2020 – Jul 2020 · Associated with Sir Padampat Singhania University*
+*May 2020 – Jul 2020 · Associated with Bennett University*
 
 Built a deep-learning model to identify diseases in Kharif crops and distinguish affected plants from healthy crops. The project explored image preparation, model training, and classification to reduce manual inspection effort.
 

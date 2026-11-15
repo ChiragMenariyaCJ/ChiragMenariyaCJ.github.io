@@ -33,7 +33,9 @@ theme:
     - content.code.annotate
   font: {text: Inter, code: JetBrains Mono}
 extra_css: [stylesheets/extra.css]
-extra_javascript: [javascripts/toc-dropdown.js]
+extra_javascript:
+  - javascripts/visitor-counter.js
+  - javascripts/toc-dropdown.js
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -69,5 +71,6 @@ nav:
       - Nmap: tools/nmap.md
   - Cheatsheets: cheatsheets/index.md
   - Labs: labs/index.md
+  - Visitor Counter: visitor-counter.md
 plugins:
   - search
