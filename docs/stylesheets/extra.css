@@ -1089,9 +1089,13 @@ html {
   }
 
   .md-sidebar--secondary .md-sidebar__scrollwrap::before {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 3;
     display: block;
     padding: 0.2rem 0.5rem 0.62rem;
     border-bottom: 1px solid var(--site-sidebar-line);
+    background-color: var(--site-sidebar-bg);
     color: var(--md-accent-fg-color);
     content: "CONTEXT  //  ON THIS PAGE";
     font-family: var(--md-code-font-family);
@@ -1099,6 +1103,7 @@ html {
     font-weight: 700;
     letter-spacing: 0.13em;
     line-height: 1.4;
+    box-shadow: 0 0 0.4rem 0.4rem var(--site-sidebar-bg);
   }
 
   .md-sidebar--secondary .md-sidebar__scrollwrap::after {
@@ -1120,6 +1125,7 @@ html {
   }
 
   .md-sidebar--secondary .md-nav--secondary > .md-nav__title {
+    display: none !important;
     margin: 0;
     padding: 0.55rem 0.5rem 0.65rem;
     border-bottom: 0;
