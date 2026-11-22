@@ -1,13 +1,18 @@
 # Cyber With CJ
 
-Personal cybersecurity notes and practical references covering networking, Linux,
-web and API security, penetration testing, Active Directory, tools, and authorised
-labs.
+A structured, hands-on cybersecurity curriculum covering networking, Linux, web
+and API security, penetration testing, Active Directory, tools, cheatsheets, and
+authorised labs. Learners can take a four-week foundations sprint or follow the
+complete 26-week path.
 
 Read the published site at **[cyberwithcj.com](https://cyberwithcj.com)**.
 
 ## Contents
 
+- [Learning path](docs/learning-path.md)
+- [Study guide](docs/study-guide.md)
+- [Glossary](docs/glossary.md)
+- [Official resources](docs/resources.md)
 - [Portfolio](docs/portfolio/index.md)
 - [About](docs/about.md)
 - [Networking](docs/networking/index.md)

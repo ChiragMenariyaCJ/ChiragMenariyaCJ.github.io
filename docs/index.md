@@ -6,6 +6,11 @@ Welcome to my personal cybersecurity knowledge base. I write what I learn in pla
 
 > **Learn → Practise → Write it down → Come back later.**
 
+New here? Start with the [structured learning path](learning-path.md): choose a
+four-week foundations sprint or follow the complete 26-week curriculum. The
+[study guide](study-guide.md) turns each lesson into notes, lab evidence, and a
+portfolio-ready deliverable.
+
 <div class="portfolio-home-callout" markdown>
 
 <span class="portfolio-home-callout__label">PROFILE / SELECTED WORK</span>

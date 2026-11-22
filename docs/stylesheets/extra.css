@@ -1028,9 +1028,9 @@ html {
  *
  * The main content already carries the site's visual identity.  These
  * panels give the two desktop rails a similarly intentional role: the left
- * rail is the system map, while the right rail is the live page context.
- * The treatment is deliberately scoped to desktop so Material's mobile
- * drawer remains familiar and easy to use.
+ * rail is the current section menu, while the right rail is the live page
+ * context. The treatment is deliberately scoped to desktop so Material's
+ * mobile drawer remains familiar and easy to use.
  */
 :root {
   --site-sidebar-bg: rgba(248, 250, 252, 0.92);
@@ -1056,10 +1056,16 @@ html {
   .md-sidebar--secondary .md-sidebar__scrollwrap {
     position: relative;
     height: auto !important;
-    max-height: calc(100vh - 6.1rem);
+    /* Leave room for the footer navigation and metadata so the panel never
+     * sits on top of the page's bottom controls. Longer outlines scroll here. */
+    max-height: calc(100vh - 14rem);
+    max-height: calc(100dvh - 14rem);
     margin: 0 0.2rem;
     padding: 0.45rem;
     overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
     border: 1px solid var(--site-sidebar-border);
     border-inline-end: 2px solid var(--md-accent-fg-color);
     border-radius: 0.85rem;
@@ -1110,7 +1116,7 @@ html {
 
   .md-sidebar--secondary .md-nav--secondary {
     margin: 0;
-    font-size: 0.68rem;
+    font-size: 0.875rem;
   }
 
   .md-sidebar--secondary .md-nav--secondary > .md-nav__title {
@@ -1208,7 +1214,7 @@ html {
     margin: 0;
     padding: 0.24rem 0.35rem;
     color: var(--site-sidebar-muted);
-    font-size: 0.63rem;
+    font-size: 0.8125rem;
     line-height: 1.35;
   }
 
@@ -1268,10 +1274,16 @@ html {
   .md-sidebar--primary .md-sidebar__scrollwrap {
     position: relative;
     height: auto !important;
-    max-height: calc(100vh - 6.1rem);
+    /* Reserve the bottom navigation/footer zone; long module lists scroll
+     * inside the rail instead of extending into the footer. */
+    max-height: calc(100vh - 14rem);
+    max-height: calc(100dvh - 14rem);
     margin: 0 0.2rem;
     padding: 0.45rem;
     overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
     border: 1px solid var(--site-sidebar-border);
     border-inline-start: 2px solid var(--md-accent-fg-color);
     border-radius: 0.85rem;
@@ -1299,7 +1311,7 @@ html {
     padding: 0.2rem 0.5rem 0.62rem;
     border-bottom: 1px solid var(--site-sidebar-line);
     color: var(--md-accent-fg-color);
-    content: "SYSTEM MAP  //  MODULES";
+    content: "CURRENT SECTION";
     font-family: var(--md-code-font-family);
     font-size: 0.58rem;
     font-weight: 700;
@@ -1308,26 +1320,21 @@ html {
   }
 
   .md-sidebar--primary .md-sidebar__scrollwrap::after {
-    display: block;
-    margin: 0.55rem 0.35rem 0.15rem;
-    padding: 0.42rem 0.5rem 0.1rem;
-    border-top: 1px solid var(--site-sidebar-line);
-    color: var(--site-sidebar-muted);
-    content: "STATUS  /  KNOWLEDGE BASE ONLINE";
-    font-family: var(--md-code-font-family);
-    font-size: 0.56rem;
-    letter-spacing: 0.08em;
-    line-height: 1.35;
+    display: none;
   }
 
-  /* navigation.tabs makes Material hide every non-active item in a
-   * `md-nav--lifted` rail.  The header tabs already cover that interaction;
-   * the desktop rail can therefore act as the complete module map instead. */
+  /* Keep the desktop rail scoped to the selected top-level section. The
+   * header tabs remain the site-wide switcher; this rail is only the lesson
+   * menu for the section currently being read. */
   .md-sidebar--primary .md-nav--primary.md-nav--lifted > .md-nav__title {
-    display: flex;
+    display: none !important;
   }
 
   .md-sidebar--primary .md-nav--primary.md-nav--lifted > .md-nav__list > .md-nav__item {
+    display: none;
+  }
+
+  .md-sidebar--primary .md-nav--primary.md-nav--lifted > .md-nav__list > .md-nav__item--active {
     display: block;
   }
 
@@ -1391,7 +1398,7 @@ html {
     border: 1px solid transparent;
     border-radius: 0.45rem;
     color: var(--site-sidebar-muted);
-    font-size: 0.73rem;
+    font-size: 0.875rem;
     line-height: 1.35;
     transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
   }
@@ -1408,9 +1415,9 @@ html {
     transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
   }
 
-  /* Nested navigation entries (currently Tools) use a link container so the
-   * page link and expand control can sit side by side.  Give that shell the
-   * same rhythm as the regular module links. */
+  /* Curriculum sections use a link container so the section overview and
+   * expand control can sit side by side.  Give that shell the same rhythm as
+   * the regular module links. */
   .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__container {
     position: relative;
     display: flex;
@@ -1430,7 +1437,7 @@ html {
     margin: 0;
     padding: 0.42rem 0.35rem 0.42rem 0.55rem;
     color: var(--site-sidebar-muted);
-    font-size: 0.73rem;
+    font-size: 0.875rem;
     line-height: 1.35;
   }
 
@@ -1514,7 +1521,7 @@ html {
     margin: 0;
     padding: 0.28rem 0.4rem;
     color: var(--site-sidebar-muted);
-    font-size: 0.66rem;
+    font-size: 0.875rem;
     line-height: 1.35;
   }
 
@@ -1550,23 +1557,6 @@ html {
    * let the right panel be the single source of page context. */
   .md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item--active > .md-nav--secondary {
     display: none !important;
-  }
-}
-
-@media screen and (min-width: 76.25em) {
-  /* The top tabs are the desktop module navigation.  Hide Material's
-   * duplicate left rail here, but keep its drawer below this breakpoint for
-   * tablet and mobile navigation. */
-  .md-sidebar--primary {
-    display: none !important;
-  }
-
-  [dir="ltr"] .md-sidebar--primary ~ .md-content > .md-content__inner {
-    margin-left: 0 !important;
-  }
-
-  [dir="rtl"] .md-sidebar--primary ~ .md-content > .md-content__inner {
-    margin-right: 0 !important;
   }
 }
 

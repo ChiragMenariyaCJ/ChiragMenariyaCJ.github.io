@@ -1,6 +1,6 @@
 site_name: Cyber With CJ
 site_url: https://cyberwithcj.com
-site_description: Practical cybersecurity notes, developer portfolio, references, and authorised lab write-ups.
+site_description: A structured, hands-on cybersecurity and penetration-testing curriculum with authorised labs, references, and portfolio work.
 site_author: Chirag Menariya
 copyright: Copyright © 2026 Cyber With CJ
 theme:
@@ -57,20 +57,64 @@ markdown_extensions:
   - toc:
       permalink: false
 nav:
-  - Home: index.md
+  - Home:
+      - Home: index.md
+      - Learning Path: learning-path.md
+      - Study Guide: study-guide.md
+      - Glossary: glossary.md
+      - Official Resources: resources.md
   - Portfolio: portfolio/index.md
   - About: about.md
-  - Networking: networking/index.md
-  - Linux: linux/index.md
-  - Penetration Testing: penetration-testing/index.md
-  - Web Security: web-security/index.md
-  - API Security: api-security/index.md
-  - Active Directory: active-directory/index.md
+  - Networking:
+      - Overview: networking/index.md
+      - Models & Routing: networking/fundamentals.md
+      - Addressing & Subnetting: networking/addressing-subnetting.md
+      - Protocols & Services: networking/protocols-services.md
+      - Packet Analysis: networking/packet-analysis.md
+  - Linux:
+      - Overview: linux/index.md
+      - Shell & Filesystem: linux/fundamentals.md
+      - Identity & Permissions: linux/identity-permissions.md
+      - Processes & Services: linux/processes-services.md
+      - Bash Automation: linux/bash-automation.md
+  - Penetration Testing:
+      - Overview: penetration-testing/index.md
+      - Methodology & Rules of Engagement: penetration-testing/methodology.md
+      - Reconnaissance & Enumeration: penetration-testing/reconnaissance-enumeration.md
+      - Validation & Reporting: penetration-testing/validation-reporting.md
+  - Web Security:
+      - Overview: web-security/index.md
+      - HTTP & Browser Foundations: web-security/http-foundations.md
+      - Web Testing Workflow: web-security/testing-workflow.md
+      - Vulnerability Classes: web-security/vulnerability-classes.md
+  - API Security:
+      - Overview: api-security/index.md
+      - API Foundations: api-security/api-foundations.md
+      - API Testing Workflow: api-security/api-testing-workflow.md
+      - Identity & Authorization: api-security/identity-authorization.md
+  - Active Directory:
+      - Overview: active-directory/index.md
+      - AD Foundations: active-directory/ad-foundations.md
+      - AD Assessment Workflow: active-directory/ad-assessment.md
+      - Identity Attack Paths: active-directory/identity-attack-paths.md
   - Tools:
-      - tools/index.md
+      - Overview: tools/index.md
       - Nmap: tools/nmap.md
-  - Cheatsheets: cheatsheets/index.md
-  - Labs: labs/index.md
+      - Wireshark: tools/wireshark.md
+      - Burp Suite: tools/burp-suite.md
+      - Netcat: tools/netcat.md
+      - Gobuster: tools/gobuster.md
+  - Cheatsheets:
+      - Overview: cheatsheets/index.md
+      - Linux: cheatsheets/linux.md
+      - Networking: cheatsheets/networking.md
+      - HTTP: cheatsheets/http.md
+      - Windows & PowerShell: cheatsheets/windows-powershell.md
+  - Labs:
+      - Overview: labs/index.md
+      - Build a Safe Lab: labs/lab-build-guide.md
+      - Guided Labs: labs/guided-labs.md
+      - Assessment Report Template: labs/report-template.md
   - Visitor Counter: visitor-counter.md
 plugins:
   - search
