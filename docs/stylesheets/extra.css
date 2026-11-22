@@ -1056,12 +1056,16 @@ html {
   .md-sidebar--secondary .md-sidebar__scrollwrap {
     position: relative;
     height: auto !important;
+    isolation: isolate;
     /* Leave room for the footer navigation and metadata so the panel never
      * sits on top of the page's bottom controls. Longer outlines scroll here. */
     max-height: calc(100vh - 14rem);
     max-height: calc(100dvh - 14rem);
     margin: 0 0.2rem;
-    padding: 0.45rem;
+    /* Reserve a stable header band inside the scrolling panel. The cap below
+     * is anchored to the panel viewport, so list content never slides under
+     * its label. */
+    padding: 3.35rem 0.45rem 0.45rem;
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -1088,14 +1092,22 @@ html {
     padding: 0 !important;
   }
 
-  .md-sidebar--secondary .md-sidebar__scrollwrap::before {
+  .md-sidebar--secondary .md-nav--secondary::before {
+    /* Keep the cap on the non-scrolling side of the scroll container. A
+     * pseudo-element on the scroll container itself moves away with its
+     * contents in Chromium. */
     position: sticky;
-    inset-block-start: 0;
+    inset-block-start: -2.9rem;
     z-index: 3;
     display: block;
+    margin: -2.9rem -0.45rem 0;
     padding: 0.2rem 0.5rem 0.62rem;
     border-bottom: 1px solid var(--site-sidebar-line);
-    background-color: var(--site-sidebar-bg);
+    /* The cap must be opaque so scrolled links do not show through the
+     * section label at the top of the panel. */
+    background-color: var(--site-sidebar-bg-strong);
+    background-image: none;
+    pointer-events: none;
     color: var(--md-accent-fg-color);
     content: "CONTEXT  //  ON THIS PAGE";
     font-family: var(--md-code-font-family);
@@ -1103,7 +1115,7 @@ html {
     font-weight: 700;
     letter-spacing: 0.13em;
     line-height: 1.4;
-    box-shadow: 0 0 0.4rem 0.4rem var(--site-sidebar-bg);
+    box-shadow: 0 0 0.4rem 0.4rem var(--site-sidebar-bg-strong);
   }
 
   .md-sidebar--secondary .md-sidebar__scrollwrap::after {
@@ -1233,7 +1245,7 @@ html {
   }
 
   .md-sidebar--secondary .toc-toggle {
-    inset-block-start: 0.27rem;
+    inset-block-start: 0.33rem;
     inset-inline-end: 0.2rem;
     z-index: 1;
     width: 1.25rem;
@@ -1247,13 +1259,17 @@ html {
   }
 
   .md-sidebar--secondary .toc-toggle::before {
+    position: absolute;
+    inset: 0;
+    margin: auto;
     display: block;
     width: 0.36rem;
     height: 0.36rem;
     border-inline-end: 1px solid currentcolor;
     border-block-end: 1px solid currentcolor;
     content: "";
-    transform: rotate(-45deg) translate(-0.05rem, -0.05rem);
+    transform: rotate(-45deg);
+    transform-origin: center;
     transition: transform 150ms ease;
   }
 
@@ -1262,7 +1278,7 @@ html {
   }
 
   .md-sidebar--secondary .toc-toggle[aria-expanded="true"]::before {
-    transform: rotate(45deg) translate(-0.05rem, -0.05rem);
+    transform: rotate(45deg);
   }
 
   .md-sidebar--secondary.md-sidebar--empty {
@@ -1660,6 +1676,37 @@ html {
   font-weight: 600;
   letter-spacing: 0.01em;
   margin-inline-end: 0.4rem;
+}
+
+/* Material's default back-to-top control is centered near the top of the
+ * viewport. That works with a single-row header, but this site has a second
+ * tabs row, so the control can sit on top of the reading content. Keep it in
+ * a predictable bottom corner instead. */
+.md-top {
+  top: auto;
+  inset-inline-start: auto;
+  inset-inline-end: max(1rem, env(safe-area-inset-right));
+  inset-block-end: max(1rem, env(safe-area-inset-bottom));
+  margin: 0;
+  transform: none;
+  z-index: 4;
+}
+
+[dir="ltr"] .md-top {
+  margin-left: 0;
+}
+
+[dir="rtl"] .md-top {
+  margin-right: 0;
+  transform: none;
+}
+
+.md-top[hidden] {
+  transform: translateY(0.2rem);
+}
+
+[dir="rtl"] .md-top[hidden] {
+  transform: translateY(0.2rem);
 }
 
 @media (max-width: 700px) {
